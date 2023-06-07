@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="kalkulator.css">
+    <title>Kalkulator</title>
+</head>
+<body>
+    <h1>Kalkulator</h1>
+    <input type="number" id="angka1" placeholder="Angka 1">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="number" id="angka2" placeholder="Angka 2">
+    <button onclick="hitung()">Hitung</button>
+    <p>Hasil: <span id="hasil"></span></p>
+    <a href="https://akuivan13.github.io/portofolio/" class="btn btn-primary">Kembali</a>
+    
+    <script>
+        function hitung() {
+            var angka1 = parseInt(document.getElementById("angka1").value);
+            var angka2 = parseInt(document.getElementById("angka2").value);
+            var operator = document.getElementById("operator").value;
+            var hasil = 0;
+
+            if (operator === "+") {
+                hasil = angka1 + angka2;
+            } else if (operator === "-") {
+                hasil = angka1 - angka2;
+            } else if (operator === "*") {
+                hasil = angka1 * angka2;
+            } else if (operator === "/") {
+                hasil = angka1 / angka2;
+            }
+
+            document.getElementById("hasil").innerHTML = hasil;
+        
+        }
+    </script>
+</body>
+</html>

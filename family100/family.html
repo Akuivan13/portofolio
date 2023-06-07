@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Family 100</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+
+        .question {
+            margin-top: 20px;
+        }
+
+        .answers {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .answer-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .answer-button:hover {
+            background-color: #45a049;
+        }
+
+        .score {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        var score = 0;
+
+        function selectAnswer(isCorrect) {
+            if (isCorrect) {
+                score += 100;
+                alert("Jawaban benar! Poin Anda +100.");
+            } else {
+                score -= 100;
+                alert("Jawaban salah! Poin Anda -100.");
+            }
+
+            updateScore();
+            loadNextQuestion();
+        }
+
+        function updateScore() {
+            var scoreElement = document.getElementById("score");
+            scoreElement.innerHTML = "Skor Anda: " + score;
+        }
+
+        function loadNextQuestion() {
+            // Kode untuk memuat pertanyaan selanjutnya
+            // Anda dapat menggunakan JavaScript untuk memperbarui elemen-elemen HTML dengan pertanyaan baru
+        }
+    </script>
+</head>
+<body>
+    <h1>Family 100</h1>
+    <div class="question">
+        <h2>Pertanyaan:</h2>
+        <p id="question-text">Siapakah presiden pertama Indonesia?</p>
+    </div>
+    <div class="answers">
+        <button class="answer-button" onclick="selectAnswer(false)">Soekarno</button>
+        <button class="answer-button" onclick="selectAnswer(false)">Hatta</button>
+        <button class="answer-button" onclick="selectAnswer(true)">Soeharto</button>
+        <button class="answer-button" onclick="selectAnswer(false)">Megawati</button>
+    </div>
+    <div class="score" id="score">
+        Skor Anda: 0
+    </div>
+
+    <script>
+        updateScore();
+    </script>
+</body>
+</html>

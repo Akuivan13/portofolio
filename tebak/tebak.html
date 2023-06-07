@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="tebak.css">
+    <title>Game Tebak Kata</title>
+    <script>
+        var kata = "";
+
+        function mulai() {
+            var daftarKata = ["apel", "jeruk", "mangga", "pisang", "nanas", "semangka", "pepaya"];
+            kata = daftarKata[Math.floor(Math.random() * daftarKata.length)];
+            document.getElementById("mulaiButton").disabled = true;
+        }
+
+        function tebak() {
+            var huruf = document.getElementById("hurufInput").value.toLowerCase();
+            document.getElementById("hurufInput").value = "";
+
+            if (kata.includes(huruf)) {
+                var kataTebakan = document.getElementById("kataTebakan").innerHTML;
+                var tebakanBaru = "";
+
+                for (var i = 0; i < kata.length; i++) {
+                    if (kata[i] === huruf) {
+                        tebakanBaru += huruf;
+                    } else {
+                        tebakanBaru += kataTebakan[i];
+                    }
+                }
+
+                document.getElementById("kataTebakan").innerHTML = tebakanBaru;
+
+                if (tebakanBaru === kata) {
+                    document.getElementById("hasil").innerHTML = "Selamat! Anda berhasil menebak kata tersebut.";
+                    document.getElementById("mulaiButton").disabled = false;
+                }
+            } else {
+                document.getElementById("hasil").innerHTML = "Huruf tersebut tidak ada dalam kata. Silakan coba lagi.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Game Tebak Kata</h1>
+    <p>Tebak kata:(clue buah-buahan pakai huruf kecil semua) <span id="kataTebakan"></span></p>
+    <input type="text" id="hurufInput" placeholder="Masukkan huruf">
+    <button onclick="tebak()">Tebak</button>
+    <p id="hasil"></p>
+    <button id="mulaiButton" onclick="mulai()">Mulai</button>
+</body>
+</html>
