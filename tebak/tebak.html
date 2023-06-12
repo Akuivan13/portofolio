@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    
     <link rel="stylesheet" href="tebak.css">
     <title>Game Tebak Kata</title>
     <script>
@@ -34,7 +36,7 @@
 
                 if (tebakanBaru === kata) {
                     document.getElementById("hasil").innerHTML = "Selamat! Anda berhasil menebak kata tersebut.";
-                    document.getElementById("mulaiButton").disabled = false;
+                    document.getElementById("mulaiButton") = false;
                 }
             } else {
                 document.getElementById("hasil").innerHTML = "Huruf tersebut tidak ada dalam kata. Silakan coba lagi.";
@@ -49,5 +51,6 @@
     <button onclick="tebak()">Tebak</button>
     <p id="hasil"></p>
     <button id="mulaiButton" onclick="mulai()">Mulai</button>
+    
 </body>
 </html>

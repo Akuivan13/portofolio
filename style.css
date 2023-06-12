@@ -1,15 +1,22 @@
 .jumbotron{
     padding: 1rem;
-    background-color: #e2edff;
+    background-color: #202938;
 }
 
 #project{
-    background-color: #e2edff;
+    background-color: #202938;
     
 }
 
 footer {
-    background-color: #f2f2f2;
+    background-color: #0d6dfd;
     padding: 20px;
     text-align: center;
+}
+
+body{
+    background-color: #202938;
+    background-size: cover;
+
+
 }
