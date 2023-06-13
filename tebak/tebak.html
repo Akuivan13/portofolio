@@ -6,51 +6,76 @@
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     
     <link rel="stylesheet" href="tebak.css">
-    <title>Game Tebak Kata</title>
-    <script>
-        var kata = "";
-
-        function mulai() {
-            var daftarKata = ["apel", "jeruk", "mangga", "pisang", "nanas", "semangka", "pepaya"];
-            kata = daftarKata[Math.floor(Math.random() * daftarKata.length)];
-            document.getElementById("mulaiButton").disabled = true;
-        }
-
-        function tebak() {
-            var huruf = document.getElementById("hurufInput").value.toLowerCase();
-            document.getElementById("hurufInput").value = "";
-
-            if (kata.includes(huruf)) {
-                var kataTebakan = document.getElementById("kataTebakan").innerHTML;
-                var tebakanBaru = "";
-
-                for (var i = 0; i < kata.length; i++) {
-                    if (kata[i] === huruf) {
-                        tebakanBaru += huruf;
-                    } else {
-                        tebakanBaru += kataTebakan[i];
-                    }
-                }
-
-                document.getElementById("kataTebakan").innerHTML = tebakanBaru;
-
-                if (tebakanBaru === kata) {
-                    document.getElementById("hasil").innerHTML = "Selamat! Anda berhasil menebak kata tersebut.";
-                    document.getElementById("mulaiButton") = false;
-                }
-            } else {
-                document.getElementById("hasil").innerHTML = "Huruf tersebut tidak ada dalam kata. Silakan coba lagi.";
-            }
-        }
-    </script>
+   
+  <title>Game Tebak-tebakan</title>
+  
 </head>
 <body>
-    <h1>Game Tebak Kata</h1>
-    <p>Tebak kata:(clue buah-buahan pakai huruf kecil semua) <span id="kataTebakan"></span></p>
-    <input type="text" id="hurufInput" placeholder="Masukkan huruf">
-    <button onclick="tebak()">Tebak</button>
+  <h1>Selamat datang di Game Tebak-tebakan!</h1>
+  <p>Pilih kategori tebak-tebakan:</p>
+  <button onclick="mulaiTebakTebakan('buah')">Buah</button>
+  <button onclick="mulaiTebakTebakan('hewan')">Hewan</button>
+  <div id="game-container" style="display: none;">
+    <h2 id="tebakan-title"></h2>
+    <input type="text" id="jawaban-input" placeholder="Tebak jawabannya">
+    <button onclick="periksaJawaban()">Periksa</button>
     <p id="hasil"></p>
-    <button id="mulaiButton" onclick="mulai()">Mulai</button>
-    
+    <button onclick="mulaiTebakTebakan()">Lanjutkan</button>
+  </div>
+
+  <script>
+    var buahTebakTebakan = [
+      { tebakan: "apel", jawaban: "apel" },
+      { tebakan: "jeruk", jawaban: "jeruk" },
+      { tebakan: "mangga", jawaban: "mangga" }
+    ];
+
+    var hewanTebakTebakan = [
+      { tebakan: "kucing", jawaban: "kucing" },
+      { tebakan: "anjing", jawaban: "anjing" },
+      { tebakan: "burung", jawaban: "burung" }
+    ];
+
+    function mulaiTebakTebakan(kategori) {
+      document.getElementById("game-container").style.display = "block";
+      document.getElementById("jawaban-input").value = "";
+      document.getElementById("hasil").innerHTML = "";
+
+      var tebakTebakan;
+      if (kategori === "buah") {
+        tebakTebakan = buahTebakTebakan;
+        document.getElementById("tebakan-title").innerHTML = "Tebak Buah:";
+      } else if (kategori === "hewan") {
+        tebakTebakan = hewanTebakTebakan;
+        document.getElementById("tebakan-title").innerHTML = "Tebak Hewan:";
+      } else {
+        document.getElementById("game-container").style.display = "none";
+        return;
+      }
+
+      var randomIndex = Math.floor(Math.random() * tebakTebakan.length);
+      var tebakan = tebakTebakan[randomIndex].tebakan;
+      var jawaban = tebakTebakan[randomIndex].jawaban;
+      console.log(jawaban);
+
+      document.getElementById("jawaban-input").focus();
+
+      function periksaJawaban() {
+        var input = document.getElementById("jawaban-input").value.toLowerCase();
+        if (input === jawaban.toLowerCase()) {
+          document.getElementById("hasil").innerHTML = "Jawaban benar!";
+        } else {
+          document.getElementById("hasil").innerHTML = "Jawaban salah. Coba lagi!";
+        }
+      }
+
+      document.getElementById("jawaban-input").addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          periksaJawaban();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
